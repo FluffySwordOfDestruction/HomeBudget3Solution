@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HomeBudgetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GlobalProgramSetting">
+          <Key>
+            <PropertyRef Name="SettingId" />
+          </Key>
+          <Property Name="SettingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExcelStartingCell" Type="nchar" MaxLength="5" />
+          <Property Name="IsSummarizeLimit" Type="bit" />
+        </EntityType>
+        <EntityType Name="Income">
+          <Key>
+            <PropertyRef Name="IncomeID" />
+          </Key>
+          <Property Name="IncomeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IsPernament" Type="bit" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="IncomeDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Outcome">
+          <Key>
+            <PropertyRef Name="OutcomeID" />
+          </Key>
+          <Property Name="OutcomeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IsPernament" Type="bit" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OutcomeLimit">
+          <Key>
+            <PropertyRef Name="OutcomeLimitID" />
+          </Key>
+          <Property Name="OutcomeLimitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Limit" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CategoryID" Type="int" />
+          <Property Name="IsSum" Type="bit" />
+        </EntityType>
+        <EntityType Name="PeriodicalIncome">
+          <Key>
+            <PropertyRef Name="PeriodicalIncomeID" />
+          </Key>
+          <Property Name="PeriodicalIncomeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="Period" Type="int" Nullable="false" />
+          <Property Name="LastEntryDate" Type="datetime" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastIncomeID" Type="int" />
+        </EntityType>
+        <EntityType Name="PeriodicalOutcome">
+          <Key>
+            <PropertyRef Name="PeriodicalOutcomeID" />
+          </Key>
+          <Property Name="PeriodicalOutcomeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="Period" Type="int" Nullable="false" />
+          <Property Name="LastEntryDate" Type="datetime" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastOutcomeID" Type="int" />
+        </EntityType>
+        <Association Name="FK_Income_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Income" Type="Self.Income" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Income">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Outcome_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Outcome" Type="Self.Outcome" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Outcome">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OutcomeLimit_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="OutcomeLimit" Type="Self.OutcomeLimit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="OutcomeLimit">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HomeBudgetModelStoreContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GlobalProgramSetting" EntityType="Self.GlobalProgramSetting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Income" EntityType="Self.Income" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Outcome" EntityType="Self.Outcome" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OutcomeLimit" EntityType="Self.OutcomeLimit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PeriodicalIncome" EntityType="Self.PeriodicalIncome" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PeriodicalOutcome" EntityType="Self.PeriodicalOutcome" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Income_Category" Association="Self.FK_Income_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Income" EntitySet="Income" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Outcome_Category" Association="Self.FK_Outcome_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Outcome" EntitySet="Outcome" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OutcomeLimit_Category" Association="Self.FK_OutcomeLimit_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="OutcomeLimit" EntitySet="OutcomeLimit" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HomeBudgetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Incomes" Relationship="Self.FK_Income_Category" FromRole="Category" ToRole="Income" />
+          <NavigationProperty Name="Outcomes" Relationship="Self.FK_Outcome_Category" FromRole="Category" ToRole="Outcome" />
+          <NavigationProperty Name="OutcomeLimits" Relationship="Self.FK_OutcomeLimit_Category" FromRole="Category" ToRole="OutcomeLimit" />
+        </EntityType>
+        <EntityType Name="GlobalProgramSetting">
+          <Key>
+            <PropertyRef Name="SettingId" />
+          </Key>
+          <Property Name="SettingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExcelStartingCell" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+          <Property Name="IsSummarizeLimit" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Income">
+          <Key>
+            <PropertyRef Name="IncomeID" />
+          </Key>
+          <Property Name="IncomeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IsPernament" Type="Boolean" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="IncomeDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Income_Category" FromRole="Income" ToRole="Category" />
+        </EntityType>
+        <EntityType Name="Outcome">
+          <Key>
+            <PropertyRef Name="OutcomeID" />
+          </Key>
+          <Property Name="OutcomeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IsPernament" Type="Boolean" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Outcome_Category" FromRole="Outcome" ToRole="Category" />
+        </EntityType>
+        <EntityType Name="OutcomeLimit">
+          <Key>
+            <PropertyRef Name="OutcomeLimitID" />
+          </Key>
+          <Property Name="OutcomeLimitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Limit" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" />
+          <Property Name="IsSum" Type="Boolean" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_OutcomeLimit_Category" FromRole="OutcomeLimit" ToRole="Category" />
+        </EntityType>
+        <EntityType Name="PeriodicalIncome">
+          <Key>
+            <PropertyRef Name="PeriodicalIncomeID" />
+          </Key>
+          <Property Name="PeriodicalIncomeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="Period" Type="Int32" Nullable="false" />
+          <Property Name="LastEntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastIncomeID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="PeriodicalOutcome">
+          <Key>
+            <PropertyRef Name="PeriodicalOutcomeID" />
+          </Key>
+          <Property Name="PeriodicalOutcomeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="Period" Type="Int32" Nullable="false" />
+          <Property Name="LastEntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastOutcomeID" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_Income_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Income" Type="Self.Income" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Income">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Outcome_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Outcome" Type="Self.Outcome" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Outcome">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OutcomeLimit_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="OutcomeLimit" Type="Self.OutcomeLimit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="OutcomeLimit">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HomeBudgetEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="GlobalProgramSettings" EntityType="Self.GlobalProgramSetting" />
+          <EntitySet Name="Incomes" EntityType="Self.Income" />
+          <EntitySet Name="Outcomes" EntityType="Self.Outcome" />
+          <EntitySet Name="OutcomeLimits" EntityType="Self.OutcomeLimit" />
+          <EntitySet Name="PeriodicalIncomes" EntityType="Self.PeriodicalIncome" />
+          <EntitySet Name="PeriodicalOutcomes" EntityType="Self.PeriodicalOutcome" />
+          <AssociationSet Name="FK_Income_Category" Association="Self.FK_Income_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Income" EntitySet="Incomes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Outcome_Category" Association="Self.FK_Outcome_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Outcome" EntitySet="Outcomes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OutcomeLimit_Category" Association="Self.FK_OutcomeLimit_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="OutcomeLimit" EntitySet="OutcomeLimits" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HomeBudgetModelStoreContainer" CdmEntityContainer="HomeBudgetEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="HomeBudgetModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GlobalProgramSettings">
+            <EntityTypeMapping TypeName="HomeBudgetModel.GlobalProgramSetting">
+              <MappingFragment StoreEntitySet="GlobalProgramSetting">
+                <ScalarProperty Name="SettingId" ColumnName="SettingId" />
+                <ScalarProperty Name="ExcelStartingCell" ColumnName="ExcelStartingCell" />
+                <ScalarProperty Name="IsSummarizeLimit" ColumnName="IsSummarizeLimit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Incomes">
+            <EntityTypeMapping TypeName="HomeBudgetModel.Income">
+              <MappingFragment StoreEntitySet="Income">
+                <ScalarProperty Name="IncomeID" ColumnName="IncomeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IsPernament" ColumnName="IsPernament" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="IncomeDate" ColumnName="IncomeDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Outcomes">
+            <EntityTypeMapping TypeName="HomeBudgetModel.Outcome">
+              <MappingFragment StoreEntitySet="Outcome">
+                <ScalarProperty Name="OutcomeID" ColumnName="OutcomeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IsPernament" ColumnName="IsPernament" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OutcomeLimits">
+            <EntityTypeMapping TypeName="HomeBudgetModel.OutcomeLimit">
+              <MappingFragment StoreEntitySet="OutcomeLimit">
+                <ScalarProperty Name="OutcomeLimitID" ColumnName="OutcomeLimitID" />
+                <ScalarProperty Name="Limit" ColumnName="Limit" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="IsSum" ColumnName="IsSum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PeriodicalIncomes">
+            <EntityTypeMapping TypeName="HomeBudgetModel.PeriodicalIncome">
+              <MappingFragment StoreEntitySet="PeriodicalIncome">
+                <ScalarProperty Name="PeriodicalIncomeID" ColumnName="PeriodicalIncomeID" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="LastEntryDate" ColumnName="LastEntryDate" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastIncomeID" ColumnName="LastIncomeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PeriodicalOutcomes">
+            <EntityTypeMapping TypeName="HomeBudgetModel.PeriodicalOutcome">
+              <MappingFragment StoreEntitySet="PeriodicalOutcome">
+                <ScalarProperty Name="PeriodicalOutcomeID" ColumnName="PeriodicalOutcomeID" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="LastEntryDate" ColumnName="LastEntryDate" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastOutcomeID" ColumnName="LastOutcomeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

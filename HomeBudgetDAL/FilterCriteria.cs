@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace HomeBudgetDAL
 {
-    public interface IOutcomeService
+    public class FilterCriteria
     {
-        List<Outcome> GetOutcomes(FilterCriteria criteria);
+        public DateTime DateFrom { get; set; }
+        public DateTime DateTo { get; set; }
     }
 }

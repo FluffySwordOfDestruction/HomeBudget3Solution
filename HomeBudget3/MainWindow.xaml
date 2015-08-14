@@ -6,7 +6,16 @@
         xmlns:local="clr-namespace:HomeBudget3"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="NavigationRegion" Grid.Row="0"/>            
+        
+        <Grid x:Name="MainRegion" Grid.Row="1" Grid.Column="1"/>
         
     </Grid>
+    
 </Window>

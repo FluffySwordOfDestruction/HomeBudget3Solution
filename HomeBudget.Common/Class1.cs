@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HomeBudgetDAL
+namespace HomeBudget.Common
 {
-    public interface IOutcomeService
+    public class Class1
     {
-        List<Outcome> GetOutcomes(FilterCriteria criteria);
     }
 }

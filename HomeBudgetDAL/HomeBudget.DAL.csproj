@@ -54,6 +54,7 @@
     <Compile Include="Category.cs">
       <DependentUpon>HomeBudgetModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="FilterCriteria.cs" />
     <Compile Include="GlobalProgramSetting.cs">
       <DependentUpon>HomeBudgetModel.tt</DependentUpon>
     </Compile>
@@ -92,7 +93,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="HomeBudgetModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>HomeBudgetModel.Designer.cs</LastGenOutput>
@@ -100,7 +103,9 @@
     <None Include="HomeBudgetModel.edmx.diagram">
       <DependentUpon>HomeBudgetModel.edmx</DependentUpon>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

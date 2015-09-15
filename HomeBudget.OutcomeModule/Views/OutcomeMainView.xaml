@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="HomeBudget.OutcomeModule.OutcomeMainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HomeBudget.OutcomeModule"
+             
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MaxWidth="200"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        
+        <local:OutcomeFilters Grid.Column="0"/>
+        <local:OutcomeMainTable Grid.Column="1" />
+            
+    </Grid>
+</UserControl>

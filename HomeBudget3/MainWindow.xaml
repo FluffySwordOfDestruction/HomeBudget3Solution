@@ -5,16 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HomeBudget3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="600" Width="1000">
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
         <Grid x:Name="NavigationRegion" Grid.Row="0"/>            
         
         <Grid x:Name="MainRegion" Grid.Row="1" Grid.Column="1"/>
+        
+        <StatusBar x:Name="HBStatusBar" Grid.Row="2"/>
         
     </Grid>
     

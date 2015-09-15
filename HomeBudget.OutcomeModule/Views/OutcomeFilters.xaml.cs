@@ -13,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using HomeBudget.Common;
-using HomeBudgetDAL;
-
 namespace HomeBudget.OutcomeModule
 {
     /// <summary>
-    /// Interaction logic for OutcomeMainTable.xaml
+    /// Interaction logic for OutcomeFilters.xaml
     /// </summary>
-    public partial class OutcomeMainTable : UserControl
+    public partial class OutcomeFilters : UserControl
     {
-        private readonly IOutcomeService service = new OutcomeService();
-        public OutcomeMainTable()
+        public OutcomeFilters()
         {
             InitializeComponent();
-            this.DataContext = service.GetOutcomes(null);
         }
     }
 }

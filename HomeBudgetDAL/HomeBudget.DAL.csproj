@@ -54,7 +54,6 @@
     <Compile Include="Category.cs">
       <DependentUpon>HomeBudgetModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="FilterCriteria.cs" />
     <Compile Include="GlobalProgramSetting.cs">
       <DependentUpon>HomeBudgetModel.tt</DependentUpon>
     </Compile>
@@ -121,6 +120,12 @@
       <DependentUpon>HomeBudgetModel.edmx</DependentUpon>
       <LastGenOutput>HomeBudgetModel.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HomeBudget.Common\HomeBudget.Common.csproj">
+      <Project>{35106b4c-7ec5-40e1-9141-681458f2fe31}</Project>
+      <Name>HomeBudget.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

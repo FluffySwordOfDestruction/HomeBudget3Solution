@@ -12,20 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using HomeBudget.OutcomeModule;
 
-namespace HomeBudget3
+namespace HomeBudget.OutcomeModule
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for OutcomeMainView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class OutcomeMainView : UserControl
     {
-        public MainWindow()
+        public OutcomeMainView()
         {
             InitializeComponent();
-
-            MainRegion.Children.Add(new OutcomeMainView());
         }
     }
 }

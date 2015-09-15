@@ -54,15 +54,22 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AddOutcomeTests.cs" />
     <Compile Include="GetOutcomesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HomeBudget.Common\HomeBudget.Common.csproj">
+      <Project>{35106b4c-7ec5-40e1-9141-681458f2fe31}</Project>
+      <Name>HomeBudget.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HomeBudgetDAL\HomeBudget.DAL.csproj">
       <Project>{6239d3e0-64a1-40dc-b675-09c833d8b05c}</Project>
       <Name>HomeBudget.DAL</Name>

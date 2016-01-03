@@ -7,14 +7,14 @@
              
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600">
-    <Grid>
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" MaxWidth="200"/>
             <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="0"/>
         </Grid.ColumnDefinitions>
         
         <local:OutcomeFilters Grid.Column="0"/>
         <local:OutcomeMainTable Grid.Column="1" />
-            
     </Grid>
 </UserControl>

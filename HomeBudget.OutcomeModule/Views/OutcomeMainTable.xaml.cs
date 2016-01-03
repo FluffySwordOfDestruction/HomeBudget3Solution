@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 
 using HomeBudget.Common;
 using HomeBudgetDAL;
+using HomeBudget.OutcomeModule.ViewModels;
 
 namespace HomeBudget.OutcomeModule
 {
@@ -24,11 +25,17 @@ namespace HomeBudget.OutcomeModule
     public partial class OutcomeMainTable : UserControl
     {
         private readonly IOutcomeService service;
+
         public OutcomeMainTable()
         {
             InitializeComponent();
-            service = OutcomeService.GetDefaultOutcomeService();
-            this.DataContext = service.GetOutcomes(null);
+        }
+        public OutcomeMainTable(OutcomeMainTableViewModel context)
+        {
+            InitializeComponent();
+
+            //service = OutcomeService.GetDefaultOutcomeService();
+            this.DataContext = context;//
         }
     }
 }

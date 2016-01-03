@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HomeBudget.Common;
+using HomeBudget.Common.Events;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +20,12 @@ namespace HomeBudget.OutcomeModule
     /// <summary>
     /// Interaction logic for OutcomeMainView.xaml
     /// </summary>
-    public partial class OutcomeMainView : UserControl
+    public partial class OutcomeMainView : UserControl 
     {
         public OutcomeMainView()
         {
             InitializeComponent();
         }
+              
     }
 }

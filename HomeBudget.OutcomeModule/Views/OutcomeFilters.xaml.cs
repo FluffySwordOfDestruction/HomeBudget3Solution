@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HomeBudget.Common;
+using HomeBudget.Common.Events;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,32 @@ namespace HomeBudget.OutcomeModule
     /// </summary>
     public partial class OutcomeFilters : UserControl
     {
+        
         public OutcomeFilters()
         {
-            InitializeComponent();
+            InitializeComponent();            
+        }
+
+        private void btnFilter_Click(object sender, RoutedEventArgs e)
+        {
+            //Filtrujemy
+            
+            FilterCriteria criteria = GetFilterCriteria();
+
+            FilterCriteriaHandler.GetInstance().SetFilterCriteria(criteria);
+            FilterCriteriaHandler.GetInstance().Notify();
+
+
+        }
+
+        private FilterCriteria GetFilterCriteria()
+        {
+            FilterCriteria criteria = new FilterCriteria();
+
+            if (CbCategory.SelectedIndex > -1)
+                criteria.CategoryID = Convert.ToInt32(CbCategory.SelectedValue);
+
+            return criteria;
         }
     }
 }

@@ -13,8 +13,12 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <Grid x:Name="NavigationRegion" Grid.Row="0"/>            
-        
+        <Grid x:Name="NavigationRegion" Grid.Row="0">
+            <Button Width="60" HorizontalAlignment="Left" Click="Button_Click" Background="{x:Null}">
+                <Image Source="Icons\MenuIcon.png"/>
+            </Button>
+        </Grid>
+
         <Grid x:Name="MainRegion" Grid.Row="1" Grid.Column="1"/>
         
         <StatusBar x:Name="HBStatusBar" Grid.Row="2"/>

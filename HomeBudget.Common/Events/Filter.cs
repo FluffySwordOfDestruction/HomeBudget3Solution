@@ -10,21 +10,45 @@ namespace HomeBudget.Common.Events
     {
         private List<IObserver<FilterCriteria>> observers;
         private FilterCriteria filterCriteria;
+        private static FilterCriteriaHandler instance = null;
 
-        public FilterCriteriaHandler()
+        public static FilterCriteriaHandler GetInstance()
+        {
+            if (instance == null)
+                instance = new FilterCriteriaHandler();
+
+            return instance;
+        }
+        private FilterCriteriaHandler()
         {
             observers = new List<IObserver<FilterCriteria>>();
             filterCriteria = new FilterCriteria();
+        }
+
+
+        public void ClearFilterCriteria()
+        {
+            filterCriteria = null;
+        }
+
+        public void SetFilterCriteria(FilterCriteria criteria)
+        {
+            filterCriteria = criteria;
         }
         public IDisposable Subscribe(IObserver<FilterCriteria> observer)
         {
             if (!observers.Contains(observer))
             {
                 observers.Add(observer);
-                observer.OnNext(filterCriteria);
+               // observer.OnNext(filterCriteria);
             }
 
             return null;
+        }
+
+        public void Notify()
+        {
+            observers.ForEach(observer => observer.OnNext(filterCriteria));
         }
     }
 }

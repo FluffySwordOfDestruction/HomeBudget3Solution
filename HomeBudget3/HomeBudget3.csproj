@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -76,8 +80,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Menu.xaml.cs">
+      <DependentUpon>Menu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -106,10 +117,39 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HomeBudget.Common\HomeBudget.Common.csproj">
+      <Project>{35106b4c-7ec5-40e1-9141-681458f2fe31}</Project>
+      <Name>HomeBudget.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HomeBudget.OutcomeModule\HomeBudget.OutcomeModule.csproj">
       <Project>{46c410ad-8abf-42d4-b59c-e9b2931ae14e}</Project>
       <Name>HomeBudget.OutcomeModule</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HomeBudgetDAL\HomeBudget.DAL.csproj">
+      <Project>{6239d3e0-64a1-40dc-b675-09c833d8b05c}</Project>
+      <Name>HomeBudget.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\OutcomesIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\IncomesIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\ExitIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\ReportsIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\SettingsIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\CategoriesIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\MenuIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

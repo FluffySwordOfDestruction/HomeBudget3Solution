@@ -25,18 +25,12 @@ namespace HomeBudget.OutcomeModule
     /// </summary>
     public partial class OutcomeMainTable : UserControl
     {
-        private readonly IOutcomeService service;
-
-        public OutcomeMainTable()
-        {
-            InitializeComponent();
-        }
         public OutcomeMainTable(OutcomeMainTableViewModel context)
         {
+            DataContext = context;
             InitializeComponent();
 
-            //service = OutcomeService.GetDefaultOutcomeService();
-            this.DataContext = context;//
+           dgOutcomes.ItemsSource = context.Outcomes;
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -49,7 +43,7 @@ namespace HomeBudget.OutcomeModule
             Panel.SetZIndex(dgOutcomes, 5);
             Panel.SetZIndex(NewOutcomeView, 10);
           
-            DoubleAnimation animation = new DoubleAnimation(0,500,new Duration(new TimeSpan(1200000)));
+            DoubleAnimation animation = new DoubleAnimation(0,300,new Duration(TimeSpan.FromSeconds(0.45)));
             NewOutcomeView.BeginAnimation(UserControl.WidthProperty, animation);
             this.LayoutGrid.UpdateLayout();
         }

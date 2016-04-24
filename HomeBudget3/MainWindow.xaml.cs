@@ -14,6 +14,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using HomeBudget.OutcomeModule;
 using HomeBudget.Common;
+using Autofac;
+using HomeBudgetDAL;
+using HomeBudget.OutcomeModule.ViewModels;
+using System.Data.Entity;
 
 namespace HomeBudget3
 {
@@ -22,12 +26,28 @@ namespace HomeBudget3
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static IContainer Container {get; set;}
         public MainWindow()
         {
             InitializeComponent();
             ShowMenu();
+            RegisterServices();
 
             //MainRegion.Children.Add(new OutcomeMainView());
+        }
+
+        private void RegisterServices()
+        {
+            var builder = new ContainerBuilder();
+
+            builder.RegisterType<HomeBudgetEntities>().As<DbContext>();
+            builder.RegisterType<OutcomeService>().As<IOutcomeService>();
+            builder.RegisterType<OutcomeMainTableViewModel>();
+            builder.RegisterType<OutcomeMainTable>();
+
+            builder.RegisterType<OutcomeFilters>();
+
+            Container = builder.Build();
         }
 
         private void ShowMenu()
@@ -37,7 +57,7 @@ namespace HomeBudget3
             controller.ShowOutcomes = () => 
             {
                 MainRegion.Children.Clear();
-                MainRegion.Children.Add(new OutcomeMainView());
+                MainRegion.Children.Add(new OutcomeMainView(Container));
             };
 
             MainRegion.Children.Clear();

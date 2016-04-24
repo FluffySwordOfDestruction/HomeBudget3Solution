@@ -1,4 +1,5 @@
-﻿using HomeBudget.Common;
+﻿using Autofac;
+using HomeBudget.Common;
 using HomeBudget.Common.Events;
 using System;
 using System.Collections.Generic;
@@ -22,9 +23,22 @@ namespace HomeBudget.OutcomeModule
     /// </summary>
     public partial class OutcomeMainView : UserControl 
     {
-        public OutcomeMainView()
+        public OutcomeMainView(IContainer container)
         {
             InitializeComponent();
+
+            var mainTable = container.Resolve<OutcomeMainTable>();
+            var filters = container.Resolve<OutcomeFilters>();
+
+            Grid.SetRow(mainTable, 0);
+            Grid.SetColumn(mainTable, 1);
+            GridLayout.Children.Add(mainTable);
+
+            Grid.SetRow(filters, 0);
+            Grid.SetColumn(filters, 0);
+            GridLayout.Children.Add(filters);
+            
+            
         }
               
     }

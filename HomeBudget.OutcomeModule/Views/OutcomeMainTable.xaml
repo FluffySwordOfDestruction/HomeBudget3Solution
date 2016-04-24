@@ -12,16 +12,22 @@
             <ColumnDefinition Width="0"/>
         </Grid.ColumnDefinitions>
 
-        <DataGrid x:Name="dgOutcomes" ItemsSource="{Binding }"
+        <DataGrid x:Name="dgOutcomes" ItemsSource="{Binding Outcomes,NotifyOnSourceUpdated=True}"
                   Grid.Column="0"
                   Panel.ZIndex="10"
-                  AutoGenerateColumns="False" RowHeight="20"
-                  AlternatingRowBackground="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
+                  AutoGenerateColumns="False" RowHeight="30"
+                  AlternatingRowBackground="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" HeadersVisibility="Column" CanUserResizeRows="False" FontFamily="Calibri" FontSize="20">
+            <DataGrid.VerticalGridLinesBrush>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlDarkDarkColorKey}}" Opacity="0.5"/>
+            </DataGrid.VerticalGridLinesBrush>
+            <DataGrid.HorizontalGridLinesBrush>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlDarkDarkColorKey}}" Opacity="0.5"/>
+            </DataGrid.HorizontalGridLinesBrush>
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nazwa" Binding="{Binding Path=Name}" Width="*"/>
                 <DataGridTextColumn Header="Kategoria" Binding="{Binding Path=Category.Name}" Width="*"/>
-                <DataGridTextColumn Header="Data" Binding="{Binding Path=EntryDate}" Width="*"/>
+                <DataGridTextColumn Header="Data" Binding="{Binding Path=EntryDate, StringFormat=dd/MM/yyyy}" Width="*"/>
                 <DataGridTextColumn Header="Kwota" Binding="{Binding Path=Price}" Width="*"/>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>

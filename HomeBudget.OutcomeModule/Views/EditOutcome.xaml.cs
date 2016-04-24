@@ -29,7 +29,7 @@ namespace HomeBudget.OutcomeModule
         private void button_Click(object sender, RoutedEventArgs e)
         {
             
-            DoubleAnimation animation = new DoubleAnimation(500, 0, new Duration(new TimeSpan(1200000)));
+            DoubleAnimation animation = new DoubleAnimation(this.Width, 0, new Duration(TimeSpan.FromSeconds(0.45)));
             this.BeginAnimation(UserControl.WidthProperty, animation);
             
         }

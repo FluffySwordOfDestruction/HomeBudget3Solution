@@ -3,17 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:s="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:HomeBudget.OutcomeModule"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+             d:DesignHeight="300" d:DesignWidth="300" >
+    <Grid KeyboardNavigation.TabNavigation="Cycle">
         <Grid.Background>
+            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionColorKey}}"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <!--<Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="Black" Offset="0"/>
                 <GradientStop Color="#FF69B919" Offset="1"/>
             </LinearGradientBrush>
-        </Grid.Background>
-        <Label Content="New or Edit Outcome" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button x:Name="button" Content="Wyjdź" HorizontalAlignment="Left" Margin="131,188,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+        </Grid.Background>-->
+
+
+        <TextBlock x:Name="NameTxtBlck" Text="Nazwa:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.Row="0" Grid.Column="0"/>
+        <TextBox  Margin="10" Grid.Row="0" Grid.Column="1"  Height="{Binding ElementName=NameTxtBlck, Path=ActualHeight}" FontSize="25" TabIndex="1"/>
+
+        <TextBlock x:Name="PriceTxtBlck" Text="Kwota:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.Row="1" Grid.Column="0"/>
+        <TextBox   Margin="10" Grid.Row="1" Grid.Column="1" Height="{Binding ElementName=PriceTxtBlck, Path=ActualHeight}" FontSize="25" TabIndex="2" />
+
+        <TextBlock x:Name="DateTxtBlck"  Text="Data:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.Row="2" Grid.Column="0"/>       
+        <toolkit:MaskedTextBox x:Name="DateMaskedTxt" Margin="10" Grid.Row="2" Grid.Column="1" Height="{Binding ElementName=DateTxtBlck, Path=ActualHeight}" FontSize="25" TabIndex="3" Mask="00/00/00" ValueDataType="{x:Type s:DateTime}"  BeepOnError="True" />
+        <TextBlock x:Name="CategoryTxtBlck" Text="Kategoria:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.Row="3" Grid.Column="0"/>
+        <TextBox   Margin="10" Grid.Row="3" Grid.Column="1" Height="{Binding ElementName=CategoryTxtBlck, Path=ActualHeight}" FontSize="25" TabIndex="4"/>
+
+        <!--<TextBlock Text="Kategoria:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.Row="3" Grid.Column="0"/>
+        <TextBox   Margin="10" Grid.Row="3" Grid.Column="1" MaxHeight="50" FontSize="25"/>-->
+
+        <Button x:Name="SaveButton" Grid.Row="4" Grid.Column="1" Content="Zapisz" Height="25" Width="100" TabIndex="5"/>
+        <Button x:Name="button" Grid.Row="4" Grid.Column="0" Content="Wyjdź" Height="25" Width="100" Click="button_Click" TabIndex="6"/>
+        
     </Grid>
 </UserControl>

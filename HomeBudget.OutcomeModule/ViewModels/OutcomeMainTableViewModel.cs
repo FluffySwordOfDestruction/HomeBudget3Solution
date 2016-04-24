@@ -10,11 +10,23 @@ using System.Threading.Tasks;
 
 namespace HomeBudget.OutcomeModule.ViewModels
 {
-    public class OutcomeMainTableViewModel: IObserver<FilterCriteria>
+    public class OutcomeMainTableViewModel: IObserver<FilterCriteria>, INotifyPropertyChanged
     {
         private IOutcomeService service = null;
         private FilterCriteria criteria = null;
-        
+
+        public List<Outcome> Outcomes = new List<Outcome>();
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+
+        }
+
         public OutcomeMainTableViewModel(IOutcomeService serviceOutcome)
         {
             service = serviceOutcome;
@@ -28,7 +40,8 @@ namespace HomeBudget.OutcomeModule.ViewModels
         {
             if (service != null)
             {
-                service.GetOutcomes(criteria);
+               Outcomes = service.GetOutcomes(criteria);
+               NotifyPropertyChanged("Outcomes");
             }
         }
 

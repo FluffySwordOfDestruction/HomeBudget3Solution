@@ -32,7 +32,7 @@
 
 
         <TextBlock x:Name="NameTxtBlck" Text="Nazwa:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.Row="0" Grid.Column="0"/>
-        <TextBox  Margin="10" Grid.Row="0" Grid.Column="1"  Height="{Binding ElementName=NameTxtBlck, Path=ActualHeight}" FontSize="25" TabIndex="1"/>
+        <TextBox x:Name="NameTextBox"  Margin="10" Grid.Row="0" Grid.Column="1"  Height="{Binding ElementName=NameTxtBlck, Path=ActualHeight}" FontSize="25" TabIndex="1"/>
 
         <TextBlock x:Name="PriceTxtBlck" Text="Kwota:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.Row="1" Grid.Column="0"/>
         <TextBox   Margin="10" Grid.Row="1" Grid.Column="1" Height="{Binding ElementName=PriceTxtBlck, Path=ActualHeight}" FontSize="25" TabIndex="2" />
@@ -45,7 +45,7 @@
         <!--<TextBlock Text="Kategoria:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.Row="3" Grid.Column="0"/>
         <TextBox   Margin="10" Grid.Row="3" Grid.Column="1" MaxHeight="50" FontSize="25"/>-->
 
-        <Button x:Name="SaveButton" Grid.Row="4" Grid.Column="1" Content="Zapisz" Height="25" Width="100" TabIndex="5"/>
+        <Button x:Name="SaveButton" Grid.Row="4" Grid.Column="1" Content="Zapisz" Height="25" Width="100" TabIndex="5" Click="SaveButton_Click"/>
         <Button x:Name="button" Grid.Row="4" Grid.Column="0" Content="Wyjdź" Height="25" Width="100" Click="button_Click" TabIndex="6"/>
         
     </Grid>

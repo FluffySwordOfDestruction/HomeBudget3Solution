@@ -46,6 +46,7 @@ namespace HomeBudget.OutcomeModule
             DoubleAnimation animation = new DoubleAnimation(0,300,new Duration(TimeSpan.FromSeconds(0.45)));
             NewOutcomeView.BeginAnimation(UserControl.WidthProperty, animation);
             this.LayoutGrid.UpdateLayout();
+            NewOutcomeView.SetFocus();
         }
 
         private void HideNewOutcome()

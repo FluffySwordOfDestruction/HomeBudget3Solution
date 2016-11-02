@@ -33,5 +33,15 @@ namespace HomeBudget.OutcomeModule
             this.BeginAnimation(UserControl.WidthProperty, animation);
             
         }
+        
+        public void SetFocus()
+        {
+            NameTextBox.Focus();
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

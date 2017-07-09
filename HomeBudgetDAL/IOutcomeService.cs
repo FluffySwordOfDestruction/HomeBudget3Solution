@@ -10,5 +10,8 @@ namespace HomeBudgetDAL
     public interface IOutcomeService
     {        
         List<Outcome> GetOutcomes(FilterCriteria criteria);
+        int GetCategoryId(string categoryName);
+        List<Category> GetCategories();
+        bool SaveOutcome(Outcome outcome);
     }
 }

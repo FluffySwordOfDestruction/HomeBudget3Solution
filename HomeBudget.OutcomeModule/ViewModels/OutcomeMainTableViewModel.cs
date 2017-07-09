@@ -12,8 +12,8 @@ namespace HomeBudget.OutcomeModule.ViewModels
 {
     public class OutcomeMainTableViewModel: IObserver<FilterCriteria>, INotifyPropertyChanged
     {
-        private IOutcomeService service = null;
-        private FilterCriteria criteria = null;
+        public IOutcomeService service;
+        private FilterCriteria _criteria = null;
 
         public List<Outcome> Outcomes = new List<Outcome>();
 
@@ -40,14 +40,14 @@ namespace HomeBudget.OutcomeModule.ViewModels
         {
             if (service != null)
             {
-               Outcomes = service.GetOutcomes(criteria);
+               Outcomes = service.GetOutcomes(_criteria);
                NotifyPropertyChanged("Outcomes");
             }
         }
 
         public void OnNext(FilterCriteria value)
         {
-            criteria = value;
+            _criteria = value;
             LoadOutcomes();
         }
 

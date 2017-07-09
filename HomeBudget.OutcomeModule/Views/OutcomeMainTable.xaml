@@ -27,7 +27,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nazwa" Binding="{Binding Path=Name}" Width="*"/>
                 <DataGridTextColumn Header="Kategoria" Binding="{Binding Path=Category.Name}" Width="*"/>
-                <DataGridTextColumn Header="Data" Binding="{Binding Path=EntryDate, StringFormat=dd/MM/yyyy}" Width="*"/>
+                <DataGridTextColumn Header="Data" Binding="{Binding Path=EntryDate, StringFormat=yyyy/MM/dd}" Width="*"/>
                 <DataGridTextColumn Header="Kwota" Binding="{Binding Path=Price}" Width="*"/>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
@@ -38,5 +38,6 @@
         </DataGrid>
        
         <local:EditOutcome x:Name="NewOutcomeView" Width="0"  Grid.Column="0" Panel.ZIndex="0" HorizontalAlignment="Right"/>
+       
     </Grid>
 </UserControl>

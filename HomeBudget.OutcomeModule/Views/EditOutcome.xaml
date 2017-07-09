@@ -32,15 +32,16 @@
 
 
         <TextBlock x:Name="NameTxtBlck" Text="Nazwa:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.Row="0" Grid.Column="0"/>
-        <TextBox x:Name="NameTextBox"  Margin="10" Grid.Row="0" Grid.Column="1"  Height="{Binding ElementName=NameTxtBlck, Path=ActualHeight}" FontSize="25" TabIndex="1"/>
+        <TextBox x:Name="NameTextBox"  Margin="10" Grid.Row="0" Grid.Column="1"  Height="{Binding ElementName=NameTxtBlck, Path=ActualHeight}" FontSize="12" TabIndex="1"/>
 
         <TextBlock x:Name="PriceTxtBlck" Text="Kwota:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.Row="1" Grid.Column="0"/>
         <TextBox   Margin="10" Grid.Row="1" Grid.Column="1" Height="{Binding ElementName=PriceTxtBlck, Path=ActualHeight}" FontSize="25" TabIndex="2" />
 
         <TextBlock x:Name="DateTxtBlck"  Text="Data:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.Row="2" Grid.Column="0"/>       
-        <toolkit:MaskedTextBox x:Name="DateMaskedTxt" Margin="10" Grid.Row="2" Grid.Column="1" Height="{Binding ElementName=DateTxtBlck, Path=ActualHeight}" FontSize="25" TabIndex="3" Mask="00/00/00" ValueDataType="{x:Type s:DateTime}"  BeepOnError="True" />
+        <toolkit:MaskedTextBox x:Name="DateMaskedTxt" Margin="10" Grid.Row="2" Grid.Column="1" Height="{Binding ElementName=DateTxtBlck, Path=ActualHeight}" FontSize="25" TabIndex="3" Mask="0000/00/00" ValueDataType="{x:Type s:DateTime}"  BeepOnError="True" />
         <TextBlock x:Name="CategoryTxtBlck" Text="Kategoria:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.Row="3" Grid.Column="0"/>
-        <TextBox   Margin="10" Grid.Row="3" Grid.Column="1" Height="{Binding ElementName=CategoryTxtBlck, Path=ActualHeight}" FontSize="25" TabIndex="4"/>
+        <!--<TextBox   Margin="10" Grid.Row="3" Grid.Column="1" Height="{Binding ElementName=CategoryTxtBlck, Path=ActualHeight}" FontSize="25" TabIndex="4"/>-->
+        <ComboBox x:Name="CategoryCombo" Margin="10" Grid.Row="3" Grid.Column="1" Height="{Binding ElementName=CategoryTxtBlck, Path=ActualHeight}" FontSize="25" TabIndex="4" ItemsSource="{Binding Categories,ElementName=Name}"/>
 
         <!--<TextBlock Text="Kategoria:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.Row="3" Grid.Column="0"/>
         <TextBox   Margin="10" Grid.Row="3" Grid.Column="1" MaxHeight="50" FontSize="25"/>-->

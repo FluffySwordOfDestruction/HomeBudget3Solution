@@ -29,8 +29,8 @@ namespace HomeBudget.OutcomeModule
         {
             DataContext = context;
             InitializeComponent();
-
-           dgOutcomes.ItemsSource = context.Outcomes;
+            NewOutcomeView.Service = context.service;
+            dgOutcomes.ItemsSource = context.Outcomes;
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -42,8 +42,8 @@ namespace HomeBudget.OutcomeModule
         {
             Panel.SetZIndex(dgOutcomes, 5);
             Panel.SetZIndex(NewOutcomeView, 10);
-          
-            DoubleAnimation animation = new DoubleAnimation(0,300,new Duration(TimeSpan.FromSeconds(0.45)));
+
+            DoubleAnimation animation = new DoubleAnimation(0, 300, new Duration(TimeSpan.FromSeconds(0.45)));
             NewOutcomeView.BeginAnimation(UserControl.WidthProperty, animation);
             this.LayoutGrid.UpdateLayout();
             NewOutcomeView.SetFocus();

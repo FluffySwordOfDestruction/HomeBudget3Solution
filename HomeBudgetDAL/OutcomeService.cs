@@ -12,7 +12,7 @@ namespace HomeBudgetDAL
     {
         HomeBudgetEntities context;
 
-        
+
         public OutcomeService(DbContext ctx)
         {
             context = ctx as HomeBudgetEntities;
@@ -37,8 +37,8 @@ namespace HomeBudgetDAL
             if (criteria == null)
                 return result.OrderByDescending(outcome => outcome.OutcomeID).Take(100).ToList();
 
-            if(criteria.OutcomeID.HasValue)
-                return GetOutcomeById(result, criteria).ToList<Outcome>();                
+            if (criteria.OutcomeID.HasValue)
+                return GetOutcomeById(result, criteria).ToList<Outcome>();
 
             result = GetOutcomeFromDate(result, criteria);
             result = GetOutcomeToDate(result, criteria);
@@ -80,6 +80,32 @@ namespace HomeBudgetDAL
 
         }
 
-        
+        public bool SaveOutcome(Outcome outcome)
+        {
+            context.Outcomes.Add(outcome);
+            int result = context.SaveChanges();
+            return result > 0;
+        }
+
+        public int GetCategoryId(string categoryName)
+        {
+            if (context == null)
+                CreateContext();
+
+            var result = context.Categories.FirstOrDefault(x => x.Name.ToLowerInvariant() == categoryName.ToLowerInvariant());
+            return result != null ? result.CategoryID : -1;
+        }
+
+        private void CreateContext()
+        {
+            context = new HomeBudgetEntities();
+        }
+
+        public List<Category> GetCategories()
+        {
+            if (context == null)
+                CreateContext();
+            return context.Categories.ToList();
+        }
     }
 }
